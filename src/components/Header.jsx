@@ -34,8 +34,12 @@ const Header = () => {
           <li className="px-[20px] font-sans font-bold text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold flex-col lg:flex-row py-2 lg:py-0">
           <Link to="/shop">Shop</Link>
           </li>
-          <li className="px-[20px] font-sans font-bold text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold flex-col lg:flex-row py-2 lg:py-0">About</li>
-          <li className="px-[20px] font-sans font-bold text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold flex-col lg:flex-row py-2 lg:py-0">Contacts</li>
+          <li className="px-[20px] font-sans font-bold text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold flex-col lg:flex-row py-2 lg:py-0">
+            <Link to="/about">About</Link>
+          </li>
+          <li className="px-[20px] font-sans font-bold text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold flex-col lg:flex-row py-2 lg:py-0">
+          <Link to="/contact">Contacts</Link>
+          </li>
           <li className="px-[20px] font-sans font-bold text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold flex-col lg:flex-row py-2 lg:py-0">Journal</li>
         </ul>
         </div>

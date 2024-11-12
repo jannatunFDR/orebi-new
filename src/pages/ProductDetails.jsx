@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import axios from "axios";
 import Container from "../components/Container";
 import Flex from './../components/Flex';
@@ -9,9 +9,15 @@ import { FaStar } from "react-icons/fa";
 import { FaRegStar, FaRegStarHalfStroke } from "react-icons/fa6";
 // import { FaStarHalfAlt } from "react-icons/fa";
 import { Rate } from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../components/slice/productSlice";
 
 const ProductDetails = () => {
   let productId = useParams();
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
   let [show, setShow] = useState(false);
   let [singleProduct, setSingleProduct] = useState({});
 
@@ -37,6 +43,15 @@ const ProductDetails = () => {
   let discount = singleProduct.price * singleProduct.discountPercentage / 100
 
   let newPrice = singleProduct.price - discount
+
+  let handleCart = (item) => {
+    dispatch(addToCart({...item, qun: 1}))
+    toast("WelCome to Cart Page");
+    setTimeout(()=>{
+      navigate("/cart")
+    },2000)
+  };
+
       
     
   return (
@@ -70,7 +85,7 @@ const ProductDetails = () => {
           <button className="px-[20px] md:px-[40px] py-[12px] md:py-[16px] text-[10px] md:text-[12px] font-bold border-2 border-[#000] me-3 hover:bg-black hover:text-white duration-300">
             Add to Wish List
           </button>
-          <button className="px-[20px] md:px-[40px] py-[12px] md:py-[16px] text-[10px] md:text-[12px] font-bold border-2 border-[#000] me-3 hover:bg-black hover:text-white duration-300">
+          <button  onClick={()=>handleCart(singleProduct)} className="px-[20px] md:px-[40px] py-[12px] md:py-[16px] text-[10px] md:text-[12px] font-bold border-2 border-[#000] me-3 hover:bg-black hover:text-white duration-300">
             Add to Cart
           </button>
         </div>
@@ -92,6 +107,19 @@ const ProductDetails = () => {
           {singleProduct &&
             <Rate disabled value={singleProduct.rating}/>
           }
+
+       <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />  
 
       </Container>
 
